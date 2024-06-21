@@ -4,6 +4,11 @@ import 'package:tracker_app_section_5_udemy/models/expense.dart';
 class ExpenseItem extends StatelessWidget {
   const ExpenseItem(this.expense,{super.key});
   final Expense expense;
+  /*
+  Expense class er akta instance/object banano hoce.
+  expense k call kore Expences er filed gula k dak deya jay.
+  expences.amount
+   */
 
   @override
   Widget build(BuildContext context) {
@@ -21,10 +26,14 @@ class ExpenseItem extends StatelessWidget {
              const Spacer(),
           
               Row(children: [
-                 const Icon(Icons.calendar_month),
-
+                  Icon(catagoreyIcons[expense.category]),
+               /*
+               Map<Category, IconData> catagoreyIcons ,expense.category key and iconData value
+               catagoreyIcons akta map.map theke key catagoreyIcons[e.c] 
+               e.c k key hisabe babohar korsi.
+                */
                 const SizedBox( width: 5),
-                Text(expense.date.toString())
+                Text(expense.formatedDate)
 
               ],)
             ],)

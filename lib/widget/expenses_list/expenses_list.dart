@@ -20,7 +20,8 @@ ExpensesLsit conostructor er modde bole deya hoice abashok
       onek boro r scrollable list bananor + maintain kora duitar jonno 
       ListView.builder widget babohar kora hoy.itemCount er modde  list er length
       itemBuilder er modde index unijai call kora hocce
-
+      context hocce page r index hocce page number.
+      
        
        */
       

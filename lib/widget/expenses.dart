@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tracker_app_section_5_udemy/widget/expenses_list/expenses_list.dart';
 import 'package:tracker_app_section_5_udemy/models/expense.dart';
+import 'package:tracker_app_section_5_udemy/widget/expenses_list/new_expense.dart';
 
 class Expenses extends StatefulWidget {
   const Expenses({super.key});
@@ -17,7 +18,40 @@ final List<Expense> _regestredExpenses =
     Expense(title: "Movie", amount: 15, date:DateTime.now(), category: Category.leisure),
 ];
 
-//_regestredExpenses akta list banano hoice ai list er modde tahke Expense.
+/*
+_regestredExpenses akta list banano hoice ai list er modde tahke Expense.
+model theke Expense k call kora hoice
+*/
+
+void _openAdnexpencesOverlay(){
+  
+showModalBottomSheet(
+  isScrollControlled: true,
+  context: context,
+   builder: (ctx)=>
+    NewExpences(onAddExpence: _addExpenses));
+}
+/*
+context:context deya bole deya hocce ai dailog ta kothay dekhate chai.
+ctx deya ki dekhate chai ta banano hocce.
+NewExpences k retun kora hoice.NewExpences k dekha te chai.
+_openAdnexpencesOverlay icon button er onPressed method er modde babohar kora hoice.
+isScrollControlled deya screen er full height neya hocce
+NewExpences akta void functionney jeti user er add kora data _regestredExpenses list er modde store kore rakha hoy.
+
+ */
+
+void _addExpenses(Expense expense ){
+  setState(() {
+    _regestredExpenses.add(expense);
+  });
+}
+/*
+_regestredExpenses list er modde user er input deya expences amout,title,date add kora hocce.
+new_expense theke ai input niya asa hocce.
+
+ */
+
 
 
 
@@ -25,19 +59,29 @@ final List<Expense> _regestredExpenses =
 
   @override
   Widget build(BuildContext context) {
-    return  Scaffold( 
-      body:  Column ( 
-        children: [ 
-        const  Text("chart..."),
-          Expanded(child: ExpensesLsit(expense: _regestredExpenses))
-          
-        ],
+    return  SafeArea(
+      child: Scaffold( 
+        appBar: AppBar( 
+          title: const Text("Flutter Tracker App"),
+          actions: [ 
+            IconButton(onPressed: _openAdnexpencesOverlay,
+             icon:const Icon(Icons.add))
+          ],
+        ),
+        body:  Column ( 
+          children: [ 
+          const  Text("chart..."),
+            Expanded(child: ExpensesLsit(expense: _regestredExpenses))
+            
+          ],
+        ),
       ),
     );
   }
 }
 
 /*
-          ExpensesLsit k call kora hoice ja parameter hisabe _regestredExpenses k babohar kora hoice
-            
-           */
+ExpensesLsit k call kora hoice ja parameter hisabe _regestredExpenses k babohar kora hoice
+
+
+ */
