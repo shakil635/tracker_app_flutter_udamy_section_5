@@ -5,6 +5,7 @@ import 'package:tracker_app_section_5_udemy/widget/expenses_list/new_expense.dar
 
 class Expenses extends StatefulWidget {
   const Expenses({super.key});
+  
 
   @override
   State<Expenses> createState() => _ExpenseState();
@@ -52,29 +53,42 @@ new_expense theke ai input niya asa hocce.
 
  */
 
+void removeExpences(Expense expense){
+ setState(() {
+    _regestredExpenses.remove(expense);
+ });
+}
+/*
+user left or right e jano expens gula remove korte par.
+_regestredExpenses list thewke value remove kore hocce.
 
-
+*/
 
 
 
   @override
   Widget build(BuildContext context) {
-    return  SafeArea(
-      child: Scaffold( 
-        appBar: AppBar( 
-          title: const Text("Flutter Tracker App"),
-          actions: [ 
-            IconButton(onPressed: _openAdnexpencesOverlay,
-             icon:const Icon(Icons.add))
-          ],
-        ),
-        body:  Column ( 
-          children: [ 
-          const  Text("chart..."),
-            Expanded(child: ExpensesLsit(expense: _regestredExpenses))
-            
-          ],
-        ),
+    return  Scaffold( 
+      appBar: AppBar( 
+        title: const Text("Flutter Tracker App"),
+        actions: [ 
+          IconButton(onPressed: _openAdnexpencesOverlay,
+           icon:const Icon(Icons.add))
+        ],
+      ),
+      body:  Column ( 
+        children: [ 
+        const  Text("chart..."),
+          Expanded(child:
+           ExpensesLsit(expense:
+            _regestredExpenses,onRemoveExpences:
+             removeExpences))
+          
+          /*
+          ExpensesLsit class duita parameter nay.akta list r akta void function.
+          tai _regestredExpenses ai list pass kora hoice r onRemoveExpences funtion deya list theke value remove kora hocce.       
+           */
+        ],
       ),
     );
   }
